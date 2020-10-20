@@ -97,4 +97,4 @@ app.post('/create-checkout-session', async (req, res) => {
   // res.json({ id: session.id });
 // });
 
-app.listen(`${process.env.PORT}`, () => console.log(`Listening on LOCALHOST:${process.env.PORT}`));
+app.listen(`${process.env.PORT}`, () => console.log(`Listening on http://localhost:${process.env.PORT}`));
