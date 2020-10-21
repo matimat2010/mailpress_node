@@ -40,7 +40,7 @@ const newsletter = {
                                         <!-- <p class="new-arrival text-center">new</p> -->
 
                                         <!-- list title -->
-                                        <h2>{{$route.query.list}}</h2>
+                                        <h2>{{list.name}}</h2>
 
                                         <!--<h6 class="mt-2 pb-3 text-muted">Deployed {{list.frequency.num}} times {{getFrequency(list.frequency.per)}}</h6>-->
                                         <!--  <p>Product Code: IRSC</p>  --> 
@@ -81,7 +81,7 @@ const newsletter = {
                         <!--description-->
                         <section class="product-description">
                             <div class="container">
-                                <h6>{{$route.query.list}}</h6>
+                                <h6>{{list.name}}</h6>
                                 <div v-html="list.desc"></div>
                                 <hr>
                             </div>                                    
@@ -141,11 +141,12 @@ const newsletter = {
 
             // Create a new Checkout Session using the server-side endpoint you
             // created in step 3.
-            fetch('/create-checkout-session', {
+            fetch(`/create-checkout-session-${this.list.id}`, {
                     method: 'POST',
                 })
                 .then(function(response) {
-                    return response.json();
+                    if (response.status == '404') console.log('Error:', response.statusText);
+                    else return response.json();
                 })
                 .then(function(session) {
                     return stripe.redirectToCheckout({ sessionId: session.id });
