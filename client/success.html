@@ -1,0 +1,141 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>The Mail Press</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    
+<!--Font Awesome-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- jQuery and JS bundle w/ Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="top-nav-bar">
+<div class="search-box">
+    <i class="fa fa-bars" id="menu-btn" onclick="openMenu()"></i>
+    <i class="fa fa-times" id="close-btn" onclick="closeMenu()"></i>
+<!--menu bar created here------------------------------------------>
+<!--logo goes here-->    
+<a href="index.html"><img class="logo" src="images/logo-sm.jpg"></a>
+<!--<input type=text class="form-control">-->    
+<!--search box creared here - may not want in final-->
+<!--<span class="input-group-text"><i class="fa fa-search"></i></span>-->
+</div>
+<div class="menu-bar">
+    <ul>
+       <!--unused shopping cart--> 
+       <!-- <li><a href="#"><i class="fa fa-shopping-basket"></i>Cart</a></li>-->
+        <li><a href="#">Sign Up</a></li>
+        <li><a href="#">Log In</a></li>
+    </ul>
+</div>
+</div>
+<!--side menu----->
+<section class="header">
+    <div class="side-menu" id="side-menu">
+        <ul>
+            <li>Sign Up<i class="fa fa-angle-right"></i></li>
+            <li>Log In<i class="fa fa-angle-right"></i></li>    
+            <li>Newsletters<i class="fa fa-angle-right"></i>
+                <ul>
+                    <a href="wine.html"><li>Napa Valley Wine Tasting</li></a>
+                    <a href="cardinals.html"><li>Cardinals Baseball</li></a>
+                    <a href="tech.html"><li>Technology</li></a>
+                </ul>
+            </li>    
+        </ul>
+    </div>
+</section>    
+
+    <div class="container success">
+        <div class="row justify-content-center">
+    <div class=" col-md-6 card">
+        
+            <a href="index.html"><img src="images/success.jpg" class="img-fluid"></a>      
+                 <h1 class="success-title">Subscription Success!</h1> 
+          <h4>You have been subscribed;<br/> Your newsletter is on the way!</h4>
+        </div>    
+    </div>  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----Footer------------------------
+<section class="footer">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>Links</h1>
+                <p>Sign Up</p>
+                <p>Log In</p>
+            </div>
+            <div class="col-md-4">
+                <h1>The Mail Press</h1>
+                <p>About Us</p>
+            </div>
+            unused social media links
+            <div class="col-md-3">
+                <h1>Follow Us On</h1>
+                <p><i class="fa fa-facebook-official"></i>Facebook</p>
+                <p><i class="fa fa-youtube-play"></i>YouTube</p>
+                <p><i class="fa fa-linkedin"></i>LinkedIn</p>
+                <p><i class="fa fa-twitter"></i>Twitter</p>
+            </div>
+            
+            <div class="col-md-4 footer-image">
+                <h1></h1>
+                <img src="images\blue_logo.jpg">
+            </div>
+        </div>
+        <hr>
+            <p class="Company">Enterprises</p>
+    </div>
+</section> -->
+<script>
+    function openMenu()
+    {
+        document.getElementById("side-menu").style.display="block";
+        document.getElementById("menu-btn").style.display="none";
+        document.getElementById("close-btn").style.display="block";
+    }
+    function closeMenu()
+    {
+        document.getElementById("side-menu").style.display="none";
+        document.getElementById("menu-btn").style.display="block";
+        document.getElementById("close-btn").style.display="none";
+    }
+
+</script>
+    
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

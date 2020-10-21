@@ -59,7 +59,9 @@ app.post('/create-checkout-session-wine', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: 'https://example.com/success',
+    //success_url: '/success.html', hass to be a public url on deployment, http://www.example.com/success.html
+    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    //success_url: `${process.env.PORT}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: 'https://example.com/cancel',
   });
 
