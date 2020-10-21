@@ -47,13 +47,13 @@ app.post('/my-route', (req, res) => {
 
 //post route looks at data /request body that comes back and takes action (ex: add to database | api call etc)
 
-app.post('/create-checkout-session', async (req, res) => {
+//----------checkout for wine newsletter -------------------------
+app.post('/create-checkout-session-wine', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
       {
         // Replace `price_...` with the actual price ID for your subscription
-        // you created in step 2 of this guide.
         price: 'price_1HZlUvA5YRGP79Zvuso00EE9',
         quantity: 1,
       },
@@ -66,13 +66,45 @@ app.post('/create-checkout-session', async (req, res) => {
   res.json({ id: session.id });
 });
 
+//----------checkout for cardinals newsletter -------------------------
 
+app.post('/create-checkout-session-cardinals', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        // Replace `price_...` with the actual price ID for your subscription
+        price: 'price_1HekpDA5YRGP79Zv4d0Z87fC',
+        quantity: 1,
+      },
+    ],
+    mode: 'subscription',
+    success_url: 'https://example.com/success',
+    cancel_url: 'https://example.com/cancel',
+  });
 
+  res.json({ id: session.id });
+});
 
+//----------checkout for tech newsletter -------------------------
 
+app.post('/create-checkout-session-tech', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        // Replace `price_...` with the actual price ID for your subscription
+        price: 'price_1HektJA5YRGP79Zv99Yia1nf',
+        quantity: 1,
+      },
+    ],
+    mode: 'subscription',
+    success_url: 'https://example.com/success',
+    cancel_url: 'https://example.com/cancel',
+  });
 
-
-
+  res.json({ id: session.id });
+});
 
 
 

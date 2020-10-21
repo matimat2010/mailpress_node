@@ -12,6 +12,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 
+
+
+
+
 </head>
 <body>
 <div class="top-nav-bar">
@@ -58,10 +62,10 @@
                 <div id="product-slider" class="carousel slide carousel-fade" data-ride="carousel">
                  <div class="carousel-inner">
                    <div class="carousel-item active">
-                     <img src="images\news_info_1.jpg" class="d-block" alt="...">
+                     <img src="images\tech_info_1.jpg" class="d-block" alt="...">
                      </div>
                      <div class="carousel-item">
-                       <img src="images\wine_info_2.jpg" class="d-block" alt="...">
+                       <img src="images\tech_info_2.jpg" class="d-block" alt="...">
                      </div>
                       <!-- <div class="carousel-item"> -->
                        <!-- <img src="images\product.jpg" class="d-block" alt="..."> -->
@@ -106,7 +110,7 @@
 <!--description-->
 <section class="product-description">
     <div class="container">
-        <h6>Napa Valley Wine</h6>
+        <h6>Technology</h6>
             <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean odio arcu, consectetur nec tempus eu, pretium sit amet turpis. Sed a pharetra ligula. Nam convallis tellus a ligula luctus, laoreet tempus purus venenatis. Mauris sed rutrum felis. Vivamus non varius est. Pellentesque interdum elit eget tellus fringilla malesuada. Duis elementum convallis pretium. Nullam faucibus lacinia nulla vel feugiat. Proin eget tincidunt quam. Nam urna elit, maximus a aliquam eget, dignissim pretium ante. Vestibulum posuere mollis sagittis. Fusce congue augue id purus iaculis, a commodo risus accumsan. Suspendisse dignissim metus vel maximus tincidunt. Nam eleifend ultrices elementum.</P>
             <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean odio arcu, consectetur nec tempus eu, pretium sit amet turpis. Sed a 
             pharetra ligula. Nam convallis tellus a ligula luctus, laoreet tempus purus venenatis. Mauris sed rutrum felis. Vivamus non varius est. 
@@ -128,7 +132,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="product-top">
-                    <a href="wine.html"><img src="images/newsletter_1.jpg"></a>                  
+                    <a href="wine.html"><img src="images/newsletter_1.jpg"></a>                     
                 </div>
                 <div class="product-bottom text-center">
 <!--product name---->                        
@@ -165,10 +169,14 @@
                  <hr>
              </div>
             </div>                                          
-<!-- container ends -->
+<!-- containe ends -->
       </div>
      </div>
-</section>           
+</section>
+
+
+
+
 
 <!----Footer-------------------------->
 <section class="footer">
@@ -207,24 +215,22 @@
 <!--Add Stripe Public Key-->
 <script charset="utf-8">
     var stripe;
-//----------------------------------------------------------------------------------------
-// server test delete before publishising    
-// making a get request fromt the client to the server, fetch http client, 
+// making a get request fromt the client tio the server, fetch http client, 
 //fetch returns a promise that resolves with the reponse object
 //response has a method called json that returns a promise >
 //that resolves with the json object taht was in the response
 //in this case data has a key property of our public key
 
-    // fetch ('/public-keys')
-        // .then((response) => response.json())
-        // .then((data) => {
-            // var stripe = Stripe(data.key);
-            // console.log('Success:', data);
-        // })
-        // .catch((error) => {
-            // console.error('Error:', error);
-        // });
-//----------------------------------------------------------------------------------------        
+    fetch ('/public-keys')
+        .then((response) => response.json())
+        .then((data) => {
+            var stripe = Stripe(data.key);
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+  //  var stripe = Stripe('pk_test_51HZlTtA5YRGP79ZvTt31kfhAHxkE0WUM50Bmj0RrSLoTZjAW0TOwWM1VVvycsaikA4Xph3TJ3zBRBTvoEuVcfj1T00tAmlOvBA');
 </script>
 
 
@@ -241,14 +247,15 @@
         document.getElementById("menu-btn").style.display="block";
         document.getElementById("close-btn").style.display="none";
     }
-    
+
      // Create an instance of the Stripe object with your publishable API key
     var stripe = Stripe('pk_test_51HZlTtA5YRGP79ZvTt31kfhAHxkE0WUM50Bmj0RrSLoTZjAW0TOwWM1VVvycsaikA4Xph3TJ3zBRBTvoEuVcfj1T00tAmlOvBA');
-    var checkoutButton = document.getElementById('checkout-button');
+      var checkoutButton = document.getElementById('checkout-button');
 
       checkoutButton.addEventListener('click', function() {
-        // Create a new Checkout Session using the server-side endpoint
-        fetch('/create-checkout-session-wine', {
+        // Create a new Checkout Session using the server-side endpoint you
+        // created in step 3.
+        fetch('/create-checkout-session-tech', {
           method: 'POST',
         })
         .then(function(response) {
@@ -269,6 +276,9 @@
           console.error('Error:', error);
         });
       });
+
+
+
 
 </script>
 </body>    
