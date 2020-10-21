@@ -14,15 +14,11 @@ const routes = [{
         component: login
     },
     {
-        path: '/logout',
-        component: logout
-    },
-    {
         path: '/dashboard',
         component: dashboard
     },
     {
-        path: '/newsletter',
+        path: '/newsletter/*',
         component: newsletter
     },
     {

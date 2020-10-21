@@ -15,7 +15,8 @@ const app = new Vue({
         loaded: {
             user: false,
             lists: false
-        }
+        },
+        currentlist: null
     },
     // 'mounted' is effectively 'on load'
     mounted() {
@@ -59,6 +60,29 @@ const app = new Vue({
                 this.loaded.lists = true;
             });
 
+        },
+
+        // 
+        // loadNewsletter(newsletter) {
+        //     this.$router.push({
+        //         path: '/newsletter',
+        //         query: {
+        //             list: newsletter,
+        //             user: this.user
+        //         }
+        //     });
+        // },
+
+        // parses the newsletter data to get frequency 
+        getFrequency(frequency) {
+            let freq = ' / ';
+            if (frequency === 'monthly') freq += 'mo.';
+            else if (frequency === 'bi-weekly') freq = frequency;
+            else if (frequency === 'daily') freq += 'day';
+            else if (frequency === 'weekly') freq += 'week';
+            else if (frequency === 'yearly' || freq === 'annual') freq += 'year';
+            else freq += frequency;
+            return freq;
         },
 
         // this handles the logout functionality

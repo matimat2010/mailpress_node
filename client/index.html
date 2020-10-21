@@ -80,7 +80,7 @@
                         Newsletters<i class="fa fa-angle-right"></i>
                         <ul v-if="loaded.lists">
                             <li v-for="list,i of lists" :key="i">
-                                <router-link :to="{path: '/newsletter',query: {list: i, user: user}}">{{i}}</router-link>
+                                <router-link :to="'/newsletter/'+i">{{list.name}}</router-link>
                             </li>
                         </ul>
                     </li>
@@ -107,7 +107,7 @@
         </section>
 
         <!-- every page exists via this router-view module -->
-        <router-view :lists="lists" :user="user" class="pb-5"></router-view>
+        <router-view :lists="lists" :user="user" :currentlist="currentlist" class="pb-5"></router-view>
 
         <!--side menu----->
         <!--
@@ -152,6 +152,31 @@
 
 
         <!----2nd row images----"on sale"---------------------------->
+        <section class="featured-categories" v-if="$route.path == '/' || $route.path == '/newsletter'">
+            <div class="container" v-if="lists">
+                <div class="title-box">
+                    <h2>Newsletters</h2>
+                </div>
+                <!--<newsletters :lists="lists" :user="user"></newsletters>-->
+                <div class="row">
+                    <div class="col-md-4" v-for="list,i of lists" :key="i">
+                        <div class="product-top">
+                            <router-link :to="'/newsletter/'+i">
+                                <img :src="list.thumb" />
+                            </router-link>
+                            <!--icons on images---->
+                        </div>
+                        <div class="product-bottom text-center">
+                            <!--product name---->
+                            <h3>{{list.name}}</h3>
+                            <!--product price--->
+                            <h5>{{ '$'+list.price.cost }}{{getFrequency(list.price.freq)}}</h5>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!----new products-------------------------------------------->
         <!----Footer-------------------------->

@@ -57,6 +57,7 @@ const paths = {
     copy: {
         src: [
             dist + '/**/*',
+            '!' + dist + '/js/js.js',
             // 'client/**/*.*',
             // 'img',
             // 'img/**/*.*',

@@ -1,5 +1,5 @@
 const newsletter = {
-    // props: ['lists'],
+    props: ['lists', 'user'],
     data() {
         return {
             list: null,
@@ -7,7 +7,6 @@ const newsletter = {
             move: 0,
             ease: '400ms',
             delay: 2000,
-            user: null,
             committed: false
         };
     },
@@ -98,8 +97,6 @@ const newsletter = {
                 </main>`,
     mounted() {
         window.scrollTo(0, 0, 'smooth');
-        if (this.$route.query.user) this.user = this.$route.query.user;
-        else this.getUser();
         this.getNewsletter();
     },
     methods: {
@@ -114,27 +111,31 @@ const newsletter = {
             return freq;
         },
         getNewsletter() {
-            var list = null;
-            var docRef = db.collection("newsletters").doc(this.$route.query.list);
-            docRef.get().then((doc) => {
-                    if (doc.exists) list = doc.data();
-                    else this.error = true;
-                })
-                .then(() => {
-                    this.list = list;
-                    // if (this.list.images.length > 1) this.cycleImages(this.list.images.length);
-                }).catch((error) => {
-                    this.error = true;
-                });
+            if (this.lists[this.$route.params[0]]) {
+                this.list = this.lists[this.$route.params[0]];
+            } else {
+                var list = null;
+                var docRef = db.collection("newsletters").doc(this.$route.params[0]);
+                docRef.get().then((doc) => {
+                        if (doc.exists) list = doc.data();
+                        else this.error = true;
+                    })
+                    .then(() => {
+                        this.list = list;
+                        // if (this.list.images.length > 1) this.cycleImages(this.list.images.length);
+                    }).catch((error) => {
+                        this.error = true;
+                    });
+            }
         },
-        getUser() {
-            firebase.auth().onAuthStateChanged(user => {
-                if (user) {
-                    if (user.displayName) this.user = user.displayName;
-                    else this.user = user.email;
-                }
-            });
-        },
+        // getUser() {
+        //     firebase.auth().onAuthStateChanged(user => {
+        //         if (user) {
+        //             if (user.displayName) this.user = user.displayName;
+        //             else this.user = user.email;
+        //         }
+        //     });
+        // },
         handleStripe() {
             // Create an instance of the Stripe object with your publishable API key
             var stripe = Stripe('pk_test_51HZlTtA5YRGP79ZvTt31kfhAHxkE0WUM50Bmj0RrSLoTZjAW0TOwWM1VVvycsaikA4Xph3TJ3zBRBTvoEuVcfj1T00tAmlOvBA');
@@ -169,7 +170,7 @@ const newsletter = {
     watch: {
         // if the path changes, update the newsletter content
         $route(to, from) {
-            if (to.query.list !== from.query.list) this.getNewsletter();
+            if (to.path !== from.path) this.getNewsletter();
         }
     }
 
