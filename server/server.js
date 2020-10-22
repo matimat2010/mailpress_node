@@ -6,12 +6,6 @@ const {resolve} = require('path');
 //body parser is a middle ware that helps parse the body of a request
 const bodyParser = require('body-parser');
 
-
-//retrieves stripe plans to console//
-//(async () => {
-  //console.log(await stripe.plans.list());
-//})();
-
 // adding middle ware, takes a middle ware function that is passed a request response and then next
 //takes in the directory where our static files live
 app.use(express.static(process.env.STATIC_DIR));
@@ -31,7 +25,7 @@ app.get('/', (req,res) => {
 //add new route, recieves get request, reponds with json that has public key from enviroment variables
 //test with curl LOCALHOST:2090/public-keys
 //in order to add a new get routhe you have to pass in a diffferent path
-//this route resonds to request that come in through /public-keys
+//this route responds to request that come in through /public-keys
 app.get('/public-keys', (req, res) => {
   res.send({ key: process.env.STRIPE_PUBLIC_KEY}); 
 });
@@ -47,13 +41,92 @@ app.post('/my-route', (req, res) => {
 
 //post route looks at data /request body that comes back and takes action (ex: add to database | api call etc)
 
-app.post('/create-checkout-session', async (req, res) => {
+//------CHECKOUT SESSIONS-----url /create-checkout-session-+'product id' from firebase
+//----------------------------price = price id from Stripe----------------------------
+
+//----blue-collar session
+app.post('/create-checkout-session-blue-collar', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
       {
         // Replace `price_...` with the actual price ID for your subscription
-        // you created in step 2 of this guide.
+        price: 'price_1Hep7SA5YRGP79ZvY0cwNgrY',
+        quantity: 1,
+      },
+    ],
+    mode: 'subscription',
+    success_url: 'https://example.com/success',
+    cancel_url: 'https://example.com/cancel',
+  });
+
+  res.json({ id: session.id });
+});
+
+//----Cardinals---------------------------------
+app.post('/create-checkout-session-cardinals', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        // Replace `price_...` with the actual price ID for your subscription
+        price: 'price_1HekpDA5YRGP79Zv4d0Z87fC',
+        quantity: 1,
+      },
+    ],
+    mode: 'subscription',
+    success_url: 'https://example.com/success',
+    cancel_url: 'https://example.com/cancel',
+  });
+
+  res.json({ id: session.id });
+});
+
+//----Gamering----------------------------------
+app.post('/create-checkout-session-gamer', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        // Replace `price_...` with the actual price ID for your subscription
+        price: 'price_1Hf5lgA5YRGP79ZvvAxzfKfh',
+        quantity: 1,
+      },
+    ],
+    mode: 'subscription',
+    success_url: 'https://example.com/success',
+    cancel_url: 'https://example.com/cancel',
+  });
+
+  res.json({ id: session.id });
+});
+
+//----Tech----------------------------------
+app.post('/create-checkout-session-tech', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        // Replace `price_...` with the actual price ID for your subscription
+        price: 'price_1HektJA5YRGP79Zv99Yia1nf',
+        quantity: 1,
+      },
+    ],
+    mode: 'subscription',
+    success_url: 'https://example.com/success',
+    cancel_url: 'https://example.com/cancel',
+  });
+
+  res.json({ id: session.id });
+});
+
+//----Wine----------------------------------
+app.post('/create-checkout-session-napa', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        // Replace `price_...` with the actual price ID for your subscription
         price: 'price_1HZlUvA5YRGP79Zvuso00EE9',
         quantity: 1,
       },
@@ -68,23 +141,14 @@ app.post('/create-checkout-session', async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
+// --Template to create checkout sessios -do not delete!! ----------------------------------------------------------------
 // app.post('/create-checkout-session', async (req, res) => {
   // const session = await stripe.checkout.sessions.create({
     // payment_method_types: ['card'],
     // line_items: [
       // {
-        //Replace `price_...` with the actual price ID for your subscription
-        //you created in step 2 of this guide.
+       ////Replace `price_...` with the actual price ID for your subscription
+        ////you created in step 2 of this guide.
         // price: 'price_1HZlUvA5YRGP79Zvuso00EE9',
         // quantity: 1,
       // },
@@ -95,6 +159,6 @@ app.post('/create-checkout-session', async (req, res) => {
   // });
 // 
   // res.json({ id: session.id });
-// });
+//});
 
 app.listen(`${process.env.PORT}`, () => console.log(`Listening on http://localhost:${process.env.PORT}`));
