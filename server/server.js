@@ -56,7 +56,7 @@ app.post('/create-checkout-session-blue-collar', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: 'https://example.com/success',
+    success_url: `http://localhost:${process.env.PORT}/success.html`,
     cancel_url: 'https://example.com/cancel',
   });
 
@@ -75,8 +75,8 @@ app.post('/create-checkout-session-cardinals', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: 'https://example.com/success',
-    cancel_url: 'https://example.com/cancel',
+    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    cancel_url: `http://localhost:${process.env.PORT}/fail.html`,
   });
 
   res.json({ id: session.id });
@@ -94,8 +94,8 @@ app.post('/create-checkout-session-gamer', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: 'https://example.com/success',
-    cancel_url: 'https://example.com/cancel',
+    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    cancel_url: `http://localhost:${process.env.PORT}/fail.html`,
   });
 
   res.json({ id: session.id });
@@ -113,8 +113,8 @@ app.post('/create-checkout-session-tech', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: 'https://example.com/success',
-    cancel_url: 'https://example.com/cancel',
+    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    cancel_url: `http://localhost:${process.env.PORT}/fail.html`,
   });
 
   res.json({ id: session.id });
@@ -132,8 +132,8 @@ app.post('/create-checkout-session-napa', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: 'https://example.com/success',
-    cancel_url: 'https://example.com/cancel',
+    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    cancel_url: `http://localhost:${process.env.PORT}/fail.html`,
   });
 
   res.json({ id: session.id });
