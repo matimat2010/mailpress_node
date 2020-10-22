@@ -75,7 +75,7 @@ app.post('/create-checkout-session-cardinals', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    success_url: `https://mail-press-vue.herokuapp.com/success.html`,
     cancel_url: `http://localhost:${process.env.PORT}/fail.html`,
   });
 
