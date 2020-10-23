@@ -2,11 +2,12 @@
 <!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="440.258px" height="500px" viewBox="0 0 440.258 500" enable-background="new 0 0 440.258 500" xml:space="preserve">
+	 width="440.25px" height="500px" viewBox="0 0 440.25 500" enable-background="new 0 0 440.25 500" xml:space="preserve">
 <g>
-	<polyline fill="#FF9996" points="220.126,0 440.258,202.822 0,202.822 220.126,0 	"/>
-	<polyline fill="#FFD464" points="220.126,351.414 0,500 0,202.822 220.126,351.414 	"/>
-	<polyline fill="#A68FF7" points="220.126,351.414 440.258,500 440.258,202.822 220.126,351.414 	"/>
-	<polyline fill="#7ED8FF" points="220.126,351.414 440.258,500 0,500 220.126,351.414 	"/>
+	<polygon id="paper" fill="#FFFFFF" points="220.12,351.413 440.25,202.82 0,202.82 	"/>
+	<polyline id="left" fill="#FFD464" points="220.12,351.413 0,500 0,202.82 220.12,351.413 	"/>
+	<polyline id="right" fill="#A68FF7" points="220.12,351.413 440.25,500 440.25,202.82 220.12,351.413 	"/>
+	<polygon id="top" fill="#FF9996" points="220.12,0 440.25,202.82 0,202.82 	"/>
+	<polyline id="bot" fill="#7ED8FF" points="220.12,351.413 440.25,500 0,500 220.12,351.413 	"/>
 </g>
 </svg>

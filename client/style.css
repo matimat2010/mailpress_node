@@ -384,6 +384,7 @@ body {
 .footer {
     margin-top: 50px;
     background: #092030;
+    /* background: #131A21; */
     color: #fff;
     overflow: hidden;
 }
@@ -498,6 +499,8 @@ body {
 
 /* logo */
 
+
+/*
 .icon.-logo {
     width: 150px;
     fill: #092030;
@@ -511,38 +514,60 @@ body {
 .icon.-logo path:nth-child(1) {
     fill: #28CE85;
 }
+*/
 
-.icon.-icon {
-    height: .35em;
-    fill: #092030;
+
+/*
+ *
+ * logo
+ *
+*/
+
+.svg.-logo {
+    width: 150px;
 }
 
-
-/* top fold */
-
-.icon.-icon path:nth-child(1) {
+.svg .top {
     fill: #FF9996;
 }
 
-
-/* left fold */
-
-.icon.-icon path:nth-child(2) {
+.svg .left {
     fill: #FFD464;
 }
 
-
-/* right fold */
-
-.icon.-icon path:nth-child(3) {
+.svg .right,
+.svg .the {
     fill: #A68FF7;
 }
 
-
-/* bot fold */
-
-.icon.-icon path:nth-child(4) {
+.svg .bot {
     fill: #7ED8FF;
+}
+
+.svg .paper,
+.svg.-invert .mailpress {
+    fill: white;
+}
+
+.svg .mailpress {
+    fill: #092030;
+    fill: #322B56;
+}
+
+
+/*
+ *
+ * Icon
+ *
+*/
+
+.svg.-icon {
+    height: 2em;
+}
+
+#app .bg-dark {
+    background-color: #092030 !important;
+    background-color: #322B56 !important;
 }
 
 

@@ -10,7 +10,7 @@ Vue.component('svgIcon', {
                     xmlns="http://www.w3.org/2000/svg" 
                     :viewBox="s.viewBox" 
                     :preserveAspectRatio="aspect" 
-                    class="icon"
+                    class="svg"
                     :class="'-'+svg" 
                     v-html="s.content"
                 ></svg>`,

@@ -124,30 +124,31 @@ function svgs(cb) {
         // remove line breaks / tabs
         .pipe(replace(/>\s+/g, '>'))
         // replace all ids with classes
-        .pipe(replace(/<(path|rect|circle|g) id="/g, function(match) {
+        .pipe(replace(/<(path|rect|circle|g|polygon|polyline) id="/g, function(match) {
             return match.replace(/ id="/g, ' class="');
         }))
-        // go back through <defs> and change the ids back to classes
-        .pipe(replace(/<defs><(path|rect|circle) class=".+?<\/defs>/g, function(match) {
-            return match.replace(/ class="/g, ' id="');
-        }))
-        // clean up class names (remove any that aren't 'desktop', 'mobile', or 'ad')
+        // go back through <defs> and change the classes back to ids
+        // .pipe(replace(/<defs><(path|rect|circle|g|polygon|polyline)) class=".+?<\/defs>/g, function(match) {
+        //     return match.replace(/ class="/g, ' id="');
+        // }))
+        // clean up class names
         .pipe(replace(/ class="(.+?)"/g, function(match) {
             var cname = match.replace(' class="', '').replace('"', '');
-            if (/^(desktop|mobile|ad|left|right|middle|keyboard|top|bottom)/.test(cname)) {
+            if (/^(top|bot|right|left|paper|mailpress|the)/.test(cname)) {
                 cname = cname.split('_')[0];
                 return ' class="' + cname + '"';
             } else return '';
         }))
         // wrap <clipPath> elements in <defs>. 
         // probably brittle.
-        .pipe(replace(/<defs>(.+)<\/clipPath>/g, function(match) {
-            return match.split('</defs>').join('') + '</defs>';
-        }))
+        // .pipe(replace(/<defs>(.+)<\/clipPath>/g, function(match) {
+        //     return match.split('</defs>').join('') + '</defs>';
+        // }))
         // ok, now process svgs
         .pipe(svgmin(function getOptions(file) {
             var collapse = true;
             var cleanup = true;
+
             return {
                 plugins: [
                     { removeViewBox: false },
@@ -166,7 +167,7 @@ function svgs(cb) {
                             ]
                         }
                     },
-                    { cleanupIDs: cleanup }
+                    // { cleanupIDs: cleanup }
                 ]
             }
         }))

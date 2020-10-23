@@ -20,23 +20,61 @@
     <!-- everything within #app is accessible to Vue -->
     <div id="app">
 
+        <div class="navbar navbar-expand-lg p-0" style="border-bottom: 3px solid #092030">
+            <router-link class="navbar-brand pl-2" to="/">
+                <svg-icon svg="icon" />
+            </router-link>
+            <div class="ml-auto d-flex align-items-center" v-cloak v-if="loaded.user && user">
+                <span class="d-none d-sm-inline-block mr-3">Hello, {{ user }}.</span>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item rounded-0 bg-dark p-0">
+                        <strong>
+                            <router-link to="/dashboard" class="text-light py-3 px-4 d-inline-block">My Dashboard</router-link>
+                        </strong>
+                    </li>
+                    <li class="list-group-item rounded-0 bg-dark p-0">
+                        <strong>
+                            <a href="#" @click.prevent="logout" class="text-light py-3 px-4 d-inline-block">Log Out</a>
+                        </strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="ml-auto" v-cloak v-else-if="loaded.user && !user">
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item rounded-0 bg-dark p-0">
+                        <strong>
+                            <router-link to="/register" class="text-light py-3 px-4 d-inline-block">Sign Up</router-link>
+                        </strong>
+                    </li>
+                    <li class="list-group-item rounded-0 bg-dark p-0">
+                        <strong>
+                            <router-link to="/login" class="text-light py-3 px-4 d-inline-block">Log In</router-link>
+                        </strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="ml-auto" v-else>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item rounded-0 bg-dark p-0">
+                        <span class="py-3 px-4 d-inline-block">loading&hellip;</span>
+                    </li>
+                    <li class="list-group-item rounded-0 bg-dark p-0">
+                        <span class="py-3 px-4 d-inline-block">loading&hellip;</span>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        <!--
         <div class="top-nav-bar d-flex align-items-center">
             <div class="search-box">
-                <i class="fa fa-bars" id="menu-btn" onclick="openMenu()"></i>
-                <i class="fa fa-times" id="close-btn" onclick="closeMenu()"></i>
-                <!--menu bar created here------------------------------------------>
-                <!--logo goes here-->
                 <router-link class="mr-auto d-inline-block" to="/">
                     <svg-icon svg="icon" class="d-block ml-2" />
-                </router-link>
-                <!-- <a href="index.html"><img class="logo" src="images/logo-sm.jpg"></a> -->
-                <!--<input type=text class="form-control">-->
-                <!--search box creared here - may not want in final-->
-                <!--<span class="input-group-text"><i class="fa fa-search"></i></span>-->
             </div>
             <div class="menu-bar" v-cloak v-if="loaded.user">
                 <ul v-if="user" class="d-flex align-items-center mb-0">
-                    Hello, {{ user }}.
+                    <span class="d-none d-md-block">Hello, {{ user }}.</span>
                     <li class="ml-3 mb-0">
                         <router-link to="/dashboard">My Dashboard</router-link>
                     </li>
@@ -62,14 +100,14 @@
                 </ul>
             </div>
         </div>
+        -->
 
-        <div class="container text-center">
+        <!-- <div class="container text-center"> -->
+        <div class="container text-center" v-if="$route.path == '/'">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-
-                    <img src="images\slider_2.jpg" class="d-block w-100" alt="..."> 
-                    <!-- <svg-icon svg="logo" class="d-block w-75 mx-auto mb-2" /> -->
-
+                    <!-- <img src="images\slider_2.jpg" class="d-block w-100" alt="...">  -->
+                    <svg-icon svg="logo" class="d-block w-75 mx-auto mb-2 my-5 pb-3" />
                 </div>
             </div>
         </div>
@@ -236,7 +274,7 @@
                     <div class="col-md-4 footer-image">
                         <h1></h1>
                         <router-link to="/">
-                            <svg-icon svg="logo" class="-invert" />
+                            <svg-icon svg="logo" class="-invert w-50" />
                         </router-link>
                     </div>
                 </div>
