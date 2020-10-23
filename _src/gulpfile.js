@@ -57,7 +57,7 @@ const paths = {
     copy: {
         src: [
             dist + '/**/*',
-            '!' + dist + '/js/js.js',
+            // '!' + dist + '/js/js.js',
             // 'client/**/*.*',
             // 'img',
             // 'img/**/*.*',
@@ -189,10 +189,10 @@ function svgs(cb) {
 // watch
 function proxy() {
 
-    var proxydir = 'http://localhost:8888/' + __dirname.split('\\repos\\')[1] + '/dist/';
+    var proxydir = 'http://localhost:8888/' + (__dirname.split('\\repos\\')[1]).replace(/_src(\/|)/, '') + '/client/';
     // proxydir = 'https://www.jparks.www.us-corp-qa-3.tnqa.net/advertise/test/?v=2';
     // proxydir = 'https://azdailysun.com/test/special-section/?v027';
-    proxydir = 'http://localhost:2090';
+    // proxydir = 'http://localhost:2090';
 
     browserSync.init({
         injectChanges: true,
@@ -200,10 +200,10 @@ function proxy() {
         // proxy: 'http://localhost:8888/'+__dirname.split('\\repos\\')[1]+'/dist',
     });
 
-    // watch(paths.styles.src, styles);
-    watch(paths.scripts.src, scripts);
-    watch(paths.svgs.src, svgs);
-    watch(paths.copy.src, copy).on('change', browserSync.reload);
+    // watch(paths.scripts.src, scripts);
+    // watch(paths.svgs.src, svgs);
+    // watch(paths.copy.src, copy).on('change', browserSync.reload);
+    watch(paths.copy.src).on('change', browserSync.reload);
 }
 // gulp.task('styles', styles);
 exports.scripts = scripts;

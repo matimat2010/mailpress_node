@@ -512,34 +512,70 @@ body {
     fill: #28CE85;
 }
 
+.icon.-icon {
+    height: .35em;
+    fill: #092030;
+}
+
+
+/* top fold */
+
+.icon.-icon path:nth-child(1) {
+    fill: #FF9996;
+}
+
+
+/* left fold */
+
+.icon.-icon path:nth-child(2) {
+    fill: #FFD464;
+}
+
+
+/* right fold */
+
+.icon.-icon path:nth-child(3) {
+    fill: #A68FF7;
+}
+
+
+/* bot fold */
+
+.icon.-icon path:nth-child(4) {
+    fill: #7ED8FF;
+}
+
 
 /* ------------success and fail page----------------------*/
+
 .success {
     text-align: center;
     padding: 40px 0;
-   
-  }
-    .success-title {
-      color:#16d184;
-      font-weight: 900;
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-  .icon {
+}
+
+.success-title {
+    color: #16d184;
+    font-weight: 900;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.icon {
     color: #9ABC66;
     font-size: 100px;
     line-height: 200px;
-    margin-left:-15px;
-  }
-  .card {
+    margin-left: -15px;
+}
+
+.card {
     background: white;
     padding: 60px;
     border-radius: 4px;
     box-shadow: 0 2px 3px #C8D0D8;
     display: inline-block;
     margin: 0 auto;
-  }
-  
+}
+
 
 /* hide elements until vue has fully loaded */
 
