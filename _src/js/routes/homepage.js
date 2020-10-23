@@ -7,7 +7,7 @@ const homepage = {
     },
     template: `<main>
                     <div class="container text-center">
-                        <h2>Discover topics below and click on anyone to subscribe</h2>
+                        <h2>Welcome to The Mail Press, a place where you can indulge in your favorite topics and receive exclusive content directly in your inbox.</h2>
                     </div>
                 </main>`,
     mounted() {},

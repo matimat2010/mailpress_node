@@ -82,7 +82,7 @@ var homepage = {
   data: function data() {
     return {};
   },
-  template: "<main>\n                    <div class=\"container text-center\">\n                        <h2>Discover topics below and click on anyone to subscribe</h2>\n                    </div>\n                </main>",
+  template: "<main>\n                    <div class=\"container text-center\">\n                        <h2>Welcome to The Mail Press, a place where you can indulge in your favorite topics and receive exclusive content directly in your inbox.</h2>\n                    </div>\n                </main>",
   mounted: function mounted() {},
   methods: {}
 };
