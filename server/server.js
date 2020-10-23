@@ -56,7 +56,7 @@ app.post('/create-checkout-session-blue-collar', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    success_url: 'http://themailpress.herokuapp.com/success.html',
     cancel_url: `http://localhost:${process.env.PORT}/fail.html`,
   });
 
@@ -75,7 +75,7 @@ app.post('/create-checkout-session-cardinals', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    success_url: 'http://themailpress.herokuapp.com/success.html',
     cancel_url: `http://localhost:${process.env.PORT}/fail.html`,
   });
 
@@ -94,7 +94,7 @@ app.post('/create-checkout-session-gamer', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    success_url: 'http://themailpress.herokuapp.com/success.html',
     cancel_url: `http://localhost:${process.env.PORT}/fail.html`,
   });
 
@@ -113,7 +113,7 @@ app.post('/create-checkout-session-tech', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    success_url: 'http://themailpress.herokuapp.com/success.html',
     cancel_url: `http://localhost:${process.env.PORT}/fail.html`,
   });
 
@@ -132,7 +132,7 @@ app.post('/create-checkout-session-napa', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    success_url: 'http://themailpress.herokuapp.com/success.html',
     cancel_url: `http://localhost:${process.env.PORT}/fail.html`,
   });
 
