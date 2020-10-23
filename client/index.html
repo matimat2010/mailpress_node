@@ -1,0 +1,332 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>The Mail Press</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <!-- vue -->
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@2.0.3"></script>
+</head>
+
+<body>
+    <!-- everything within #app is accessible to Vue -->
+    <div id="app">
+
+        <div class="top-nav-bar d-flex align-items-center">
+            <div class="search-box">
+                <i class="fa fa-bars" id="menu-btn" onclick="openMenu()"></i>
+                <i class="fa fa-times" id="close-btn" onclick="closeMenu()"></i>
+                <!--menu bar created here------------------------------------------>
+                <!--logo goes here-->
+                <router-link class="mr-auto d-inline-block" to="/">
+                    <svg-icon svg="icon" class="d-block ml-2" />
+                </router-link>
+                <!-- <a href="index.html"><img class="logo" src="images/logo-sm.jpg"></a> -->
+                <!--<input type=text class="form-control">-->
+                <!--search box creared here - may not want in final-->
+                <!--<span class="input-group-text"><i class="fa fa-search"></i></span>-->
+            </div>
+            <div class="menu-bar" v-cloak v-if="loaded.user">
+                <ul v-if="user" class="d-flex align-items-center mb-0">
+                    Hello, {{ user }}.
+                    <li class="ml-3 mb-0">
+                        <router-link to="/dashboard">My Dashboard</router-link>
+                    </li>
+                    <li class="mb-0"><a href="#" @click.prevent="logout">Log Out</a></li>
+                </ul>
+                <ul class="d-flex align-items-center mb-0" v-else>
+                    <li class="mb-0">
+                        <router-link to="/register">Sign Up</router-link>
+                    </li>
+                    <li class="mb-0">
+                        <router-link to="/login">Log In</router-link>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu-bar" v-else>
+                <ul class="d-flex align-items-center mb-0">
+                    <li class="mb-0 text-dark">
+                        loading&hellip;
+                    </li>
+                    <li class="mb-0 text-dark">
+                        loading&hellip;
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+
+                    <img src="images\slider_2.jpg" class="d-block w-100" alt="..."> 
+                    <!-- <svg-icon svg="logo" class="d-block w-75 mx-auto mb-2" /> -->
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- <section class="header"> -->
+
+        <!-- <div class="side-menu" id="side-menu"> -->
+        <!-- <ul v-if="loaded.user" v-cloak> -->
+        <!-- <li v-if="!user"> -->
+        <!-- <router-link to="/register">Sign Up</router-link> <i class="fa fa-angle-right"></i> -->
+        <!-- </li> -->
+        <!-- <li v-if="!user"> -->
+        <!-- <router-link to="/login">Log In</router-link> <i class="fa fa-angle-right"></i> -->
+        <!-- </li> -->
+        <!-- <li v-if="user"> -->
+        <!-- <router-link to="/dashboard">My Dashboard <i class="fa fa-angle-right"></i></router-link> -->
+        <!-- </li> -->
+        <!-- <li v-if="lists"> -->
+        <!-- Newsletters<i class="fa fa-angle-right"></i> -->
+        <!-- <ul v-if="loaded.lists"> -->
+        <!-- <li v-for="list,i of lists" :key="i"> -->
+        <!-- <router-link :to="'/newsletter/'+i">{{list.name}}</router-link> -->
+        <!-- </li> -->
+        <!-- </ul> -->
+        <!-- </li> -->
+        <!-- <li v-if="user"><a href="#" @click.prevent="logout">Log Out <i class="fa fa-angle-right"></i></a></li> -->
+        <!-- </ul> -->
+        <!-- </div> -->
+
+        <!-- <div class="slider" v-if="$route.path === '/'"> -->
+        <!-- <div id="slider" class="carousel slide carousel-fade" data-ride="carousel"> -->
+        <!-- <div class="carousel-inner"> -->
+        <!-- <div class="carousel-item active carousel-item-left"> -->
+        <!-- <img src="images/slider_3.jpg" class="d-block w-90" alt="..."> -->
+        <!-- </div> -->
+        <!-- <div class="carousel-item carousel-item-next carousel-item-left"> -->
+        <!-- <img src="images/slider_1.jpg" class="d-block w-90" alt="..."> -->
+        <!-- </div> -->
+        <!-- <div class="carousel-item"> -->
+        <!-- <img src="images/slider_2.jpg" class="d-block w-90" alt="..."> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+
+        <!-- </section> -->
+
+
+        <!-- every page exists via this router-view module -->
+        <router-view :lists="lists" :user="user" :currentlist="currentlist" class="pb-5"></router-view>
+
+        <!--side menu----->
+        <!--
+        <section class="header">
+            <div class="side-menu" id="side-menu">
+                <ul>
+                    <li>Sign Up<i class="fa fa-angle-right"></i></li>
+                    <li>Log In<i class="fa fa-angle-right"></i></li>
+                    <li>Newsletters<i class="fa fa-angle-right"></i>
+                        <ul>
+                            <a href="wine.html">
+                                <li>Napa Valley Wine Tasting</li>
+                            </a>
+                            <li>Cardinals Baseball</li>
+                            <li>Technology</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="slider">
+                <div id="slider" class="carousel slide carousel-fade" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active carousel-item-left">
+                            <img src="images\slider_3.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item carousel-item-next carousel-item-left">
+                            <img src="images\slider_1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images\slider_2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <div class="container text-center">
+            <h2>Discover topics below and click on anyone to subscribe</h2>
+        </div>
+        -->
+
+
+
+
+
+
+
+
+
+
+        <!----2nd row images----"on sale"---------------------------->
+        <section class="featured-categories" v-if="$route.path == '/' || $route.path == '/newsletter'">
+            <div class="container" v-if="lists">
+                <div class="title-box">
+                    <h2>Newsletters</h2>
+                </div>
+                <!--<newsletters :lists="lists" :user="user"></newsletters>-->
+                <div class="row">
+                    <div class="col-md-4" v-for="list,i of lists" :key="i">
+                        <div class="product-top">
+                            <router-link :to="'/newsletter/'+i">
+                                <img :src="list.thumb" />
+                            </router-link>
+                            <!--icons on images---->
+                        </div>
+                        <div class="product-bottom text-center">
+                            <!--product name---->
+                            <h3>{{list.name}}</h3>
+                            <!--product price--->
+                            <h5>{{ '$'+list.price.cost }}{{getFrequency(list.price.freq)}}</h5>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!----new products-------------------------------------------->
+        <!----Footer-------------------------->
+        <section class="footer">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h1>Links</h1>
+                        <p v-if="!user">
+                            <router-link to="/register">Sign Up</router-link>
+                        </p>
+                        <p v-if="!user">
+                            <router-link to="/login">Log In</router-link>
+                        </p>
+                        <p v-if="user">
+                            <router-link to="/dashboard">My Dashboard</router-link>
+                        </p>
+                        <p v-if="user"><a href="#" @click.prevent="logout">Log Out</a></li>
+                    </div>
+                    <div class="col-md-4">
+                        <h1>The Mail Press</h1>
+                        <p>
+                            <router-link to="/about">About Us</router-link>
+                        </p>
+                    </div>
+                    <!-- unused social media links
+                <div class="col-md-3">
+                    <h1>Follow Us On</h1>
+                    <p><i class="fa fa-facebook-official"></i>Facebook</p>
+                    <p><i class="fa fa-youtube-play"></i>YouTube</p>
+                    <p><i class="fa fa-linkedin"></i>LinkedIn</p>
+                    <p><i class="fa fa-twitter"></i>Twitter</p>
+                </div>
+                -->
+                    <div class="col-md-4 footer-image">
+                        <h1></h1>
+                        <router-link to="/">
+                            <svg-icon svg="logo" class="-invert" />
+                        </router-link>
+                    </div>
+                </div>
+                <hr>
+                <p class="Company">Enterprises</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first, followed by modules we'll be using -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAeyXBJIeBem_KNwFRYRErhHx0Kgjqi1As",
+            authDomain: "the-mail-press.firebaseapp.com",
+            databaseURL: "https://the-mail-press.firebaseio.com",
+            projectId: "the-mail-press",
+            storageBucket: "the-mail-press.appspot.com",
+            messagingSenderId: "794233047333",
+            appId: "1:794233047333:web:71ec43ade26d9e6452f2cc",
+            measurementId: "G-478WEVE8SS"
+        };
+        // Initialize Firebase
+        const firebaseApp = firebase.initializeApp(firebaseConfig);
+        const analytics = firebase.analytics();
+    </script>
+
+    <!-- Vue / firebase functionality -->
+    <script src="js/js.js"></script>
+
+    <!--Add Stripe-->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <!--Add Stripe Public Key-->
+    <script charset="utf-8">
+        var stripe;
+        // making a get request fromt the client tio the server, fetch http client, 
+        //fetch returns a promise that resolves with the reponse object
+        //response has a method called json that returns a promise >
+        //that resolves with the json object taht was in the response
+        //in this case data has a key property of our public key
+
+        fetch('/public-keys')
+            .then((response) => response.json())
+            .then((data) => {
+                var stripe = Stripe(data.key);
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        //  var stripe = Stripe('pk_test_51HZlTtA5YRGP79ZvTt31kfhAHxkE0WUM50Bmj0RrSLoTZjAW0TOwWM1VVvycsaikA4Xph3TJ3zBRBTvoEuVcfj1T00tAmlOvBA');
+    </script>
+
+    <script>
+        function openMenu() {
+            document.getElementById("side-menu").style.display = "block";
+            document.getElementById("menu-btn").style.display = "none";
+            document.getElementById("close-btn").style.display = "block";
+        }
+
+        function closeMenu() {
+            document.getElementById("side-menu").style.display = "none";
+            document.getElementById("menu-btn").style.display = "block";
+            document.getElementById("close-btn").style.display = "none";
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
